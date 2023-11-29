@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function generatePassword(userId) {
+        const N = userId.length;
+        const Q = N % 8;
+        const M = 11;
+
+        let password = ""; 
+		  // випадкові цифри.
+        password += Math.floor(Math.random() * 10); 
+        password += Math.floor(Math.random() * 10); 
+
+			// випадкові великі букви англійського алфавіту
+        for (let i = 0; i < Q; i++) {
+          const randomCharCode = Math.floor(Math.random() * 26) + 65; 
+          password += String.fromCharCode(randomCharCode);
+        }
+
+		// випадкові великі букви англійського алфавіту
+        for (let i = Q; i < M; i++) {
+          const specialChars = [
+            "!",
+            '"',
+            "#",
+            "$",
+            "%",
+            "&",
+            "'",
+            "(",
+            ")",
+            "*",
+            ",",
+          ];
+          const randomIndex = Math.floor(Math.random() * specialChars.length);
+          password += specialChars[randomIndex];
+        }
+        return password;
+      }
+      const userId = prompt("Введіть ідентифікатор користувача:");
+      const password = generatePassword(userId);
+      alert(`Згенерований пароль: ${password}`);
+    </script>
+  </body>
+</html>
